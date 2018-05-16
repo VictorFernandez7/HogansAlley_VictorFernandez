@@ -22,7 +22,7 @@ public class Scr_GameplayManager : MonoBehaviour
     {
         if (Time.realtimeSinceStartup > (playingTime + timeZero))
             Application.Quit();
-        textMesh.text = "Time: " + (int)(Time.realtimeSinceStartup - timeZero) + "\nScore: " + points;
+        textMesh.text = "Time " + (int)(playingTime - (Time.realtimeSinceStartup - timeZero)) + "\nScore " + points;
     }
 
     public static Scr_GameplayManager GetInstance()
