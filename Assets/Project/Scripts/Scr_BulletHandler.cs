@@ -7,13 +7,12 @@ public class Scr_BulletHandler : MonoBehaviour
     private ParticleSystem hitPs;
     private Rigidbody rb;
     private AudioSource bulletAs;
-    public AudioClip shootSound;
     public AudioClip hitSound;
     public float impulseMagnitude = 10f;
 
     private void Start()
     {
-        hitPs = GetComponent<ParticleSystem>();
+        hitPs = GetComponentInChildren<ParticleSystem>();
 
         if (hitPs == null)
             Debug.Log("No se encuentra el ParticleSystem del bullet");
@@ -32,8 +31,7 @@ public class Scr_BulletHandler : MonoBehaviour
     public void Shoot(Vector3 direction)
     {
         Start();
-
-        bulletAs.PlayOneShot(shootSound);
+        
         rb.AddForce(direction.normalized * impulseMagnitude, ForceMode.Impulse);
     }
 
