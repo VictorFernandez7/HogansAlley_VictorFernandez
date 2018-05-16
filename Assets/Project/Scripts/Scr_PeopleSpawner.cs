@@ -7,8 +7,8 @@ public class Scr_PeopleSpawner : MonoBehaviour
     [SerializeField] private GameObject[] SpawnPoints;
     [SerializeField] private GameObject[] PersonTypes;
 
-    public float minSpawnTime = 1f;
-    public float maxSpawnTime = 10f;
+    public float minSpawnTime = 4f;
+    public float maxSpawnTime = 8f;
 
     private bool stop = false;
 
