@@ -21,8 +21,13 @@ public class Scr_PeopleSpawner : MonoBehaviour
     {
         while (stop == false)
         {
+            int spawn = (int)Random.Range(0, SpawnPoints.Length);
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
-            Instantiate(PersonTypes[Random.Range(0, PersonTypes.Length)], SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform);
+
+            while (SpawnPoints[spawn].transform.childCount == 0)
+            {
+                Instantiate(PersonTypes[Random.Range(0, PersonTypes.Length)], SpawnPoints[spawn].transform);
+            }
         }
     }
 
