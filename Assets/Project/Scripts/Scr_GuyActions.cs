@@ -5,46 +5,49 @@ using UnityEngine;
 public class Scr_GuyActions : MonoBehaviour
 {
     Animator animator;
+    Animator animatorBang;
 
-    private int pointsShoot = -100;
+    public int minTime = 1;
+    public int maxTime = 4;
+
     public int pointsDie = 0;
 
     private float timeToShoot;
     public float timeToBye = 5f;
 
-    public bool isEnemy = false;
-    private bool isHit = false;
-    private bool hasShot = false;
+    public bool isEnemy;
+    private bool isHit;
 
     bool pointsGiven;
-
-    //public Transform bang;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        animatorBang = GetComponentInChildren<Animator>();
 
         timeToBye = Random.Range(3, timeToBye);
-        timeToShoot = timeToBye - 1.5f;
 
         if (animator == null)
             Debug.Log("Animator missing");
+        if (animatorBang == null)
+            Debug.Log("AnimatorBang missing");
         StartCoroutine(KillThisGuy());
-        //if (isEnemy)
-            //StartCoroutine(ShootMe());
-        //bang = transform.GetChild(0);
+
+        if (isEnemy)
+        {
+            timeToShoot = Random.Range(minTime, maxTime);
+            Invoke("BANG", timeToShoot);
+        }
     }
-    /*
-    IEnumerator ShootMe()
+
+    void BANG()
     {
-        yield return new WaitForSeconds(timeToShoot);
         if (!isHit)
         {
-            Scr_GameplayManager.GetInstance().points += pointsShoot;
-            //bang.gameObject.SetActive(true);
-            hasShot = true;
-        }
-    }*/
+            animatorBang.SetBool("Bang", true);
+            Debug.Log("BANG");
+        }            
+    }
 
     IEnumerator KillThisGuy()
     {
@@ -59,7 +62,6 @@ public class Scr_GuyActions : MonoBehaviour
             isHit = true;
             Scr_GameplayManager.GetInstance().points += pointsDie;
             animator.SetTrigger("EndNow");
-
             pointsGiven = true;
         }
     }
