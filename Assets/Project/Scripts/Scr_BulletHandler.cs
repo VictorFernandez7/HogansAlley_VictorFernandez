@@ -37,7 +37,12 @@ public class Scr_BulletHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        rb.isKinematic = true;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
         hitPs.Play();
         bulletAs.PlayOneShot(hitSound);
+
+        Destroy(gameObject, 1f);
     }
 }

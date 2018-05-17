@@ -10,11 +10,13 @@ public class Scr_GuyActions : MonoBehaviour
     public int pointsDie = 0;
 
     private float timeToShoot;
-    public float timeToBye = 7f;
+    public float timeToBye = 5f;
 
     public bool isEnemy = false;
     private bool isHit = false;
     private bool hasShot = false;
+
+    bool pointsGiven;
 
     //public Transform bang;
 
@@ -28,13 +30,11 @@ public class Scr_GuyActions : MonoBehaviour
         if (animator == null)
             Debug.Log("Animator missing");
         StartCoroutine(KillThisGuy());
-        if (isEnemy)
-            StartCoroutine(ShootMe());
-
+        //if (isEnemy)
+            //StartCoroutine(ShootMe());
         //bang = transform.GetChild(0);
-
     }
-
+    /*
     IEnumerator ShootMe()
     {
         yield return new WaitForSeconds(timeToShoot);
@@ -44,7 +44,7 @@ public class Scr_GuyActions : MonoBehaviour
             //bang.gameObject.SetActive(true);
             hasShot = true;
         }
-    }
+    }*/
 
     IEnumerator KillThisGuy()
     {
@@ -54,11 +54,13 @@ public class Scr_GuyActions : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "tag_bullet" && !isHit)
+        if (other.gameObject.tag == "Bullet" && !isHit && !pointsGiven)
         {
             isHit = true;
             Scr_GameplayManager.GetInstance().points += pointsDie;
             animator.SetTrigger("EndNow");
+
+            pointsGiven = true;
         }
     }
 }

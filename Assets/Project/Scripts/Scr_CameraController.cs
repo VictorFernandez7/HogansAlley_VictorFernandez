@@ -9,13 +9,34 @@ public class Scr_CameraController : MonoBehaviour
     Vector3 lastMouse = new Vector3(255, 255, 255);
     [SerializeField] GameObject bullet;
 
+    public float FireRate;
+    float fireRate;
+    bool canShoot = true;
+
+    private void Awake()
+    {
+        fireRate = FireRate;
+    }
+
     private void Update()
     {
         if (!UnityEngine.XR.XRSettings.enabled)
             CameraPosition();
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && canShoot)
+        {
             ShootABullet();
+            FireRate = fireRate;
+            canShoot = false;
+        }
+            
+        if (!canShoot)
+        {
+            FireRate -= Time.deltaTime;
+
+            if (FireRate <= 0)
+                canShoot = true;
+        }
     }
 
     void CameraPosition()
@@ -36,7 +57,6 @@ public class Scr_CameraController : MonoBehaviour
             bh.Shoot(transform.forward);
         else
             Debug.Log("La bullet no tiene adjunto el script bulletHandler");
-
-        Destroy(bulletInstance, 3f);
+        //Destroy(bulletInstance, 3f);
     }
 }
