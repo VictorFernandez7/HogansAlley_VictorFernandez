@@ -7,6 +7,7 @@ public class Scr_BulletHandler : MonoBehaviour
     private ParticleSystem hitPs;
     private Rigidbody rb;
     private AudioSource bulletAs;
+
     public AudioClip hitSound;
     public float impulseMagnitude = 10f;
 

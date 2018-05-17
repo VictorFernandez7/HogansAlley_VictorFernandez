@@ -198,8 +198,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 1, y: 1, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0.125}
 --- !u!95 &95851555182387198
 Animator:
   serializedVersion: 3
@@ -245,8 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50bf570c465cb14cbf66e7075e08910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95851555182387198}
+  animatorBang: {fileID: 95947925100157434}
   minTime: 3
   maxTime: 5
   pointsDie: -50
-  timeToBye: 5
+  bangPoints: 0
   isEnemy: 0
+  maxTimeToBye: 5
