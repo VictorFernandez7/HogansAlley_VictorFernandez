@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23983065726260550}
   - component: {fileID: 95338998993963434}
   - component: {fileID: 114656195405162646}
+  - component: {fileID: 65689216407746952}
   m_Layer: 0
   m_Name: PersonBad2
   m_TagString: Untagged
@@ -93,12 +94,24 @@ MeshCollider:
   m_GameObject: {fileID: 1952106057190856}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65689216407746952
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952106057190856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!95 &95338998993963434
 Animator:
   serializedVersion: 3
@@ -127,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50bf570c465cb14cbf66e7075e08910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsDie: 500
+  pointsDie: 100
   timeToBye: 5
   isEnemy: 1
-  bang: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Scr_GameplayManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Scr_GameplayManager : MonoBehaviour
 
     private float timeZero;
     public float playingTime = 60f;
-    public TextMesh textMesh;
+    public TextMeshPro textMesh;
 
     public float points = 0f;
 
