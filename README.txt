@@ -15,6 +15,6 @@ OPCIONAL:
 
 - Cadencia de tiro (Scr_CameraController [13 - 38]).
 
-- Disparo enemigos (Scr_ []).
+- Disparo enemigos (Scr_GuyActions [36 - 49]).
 
 - Puntuación por headshot.

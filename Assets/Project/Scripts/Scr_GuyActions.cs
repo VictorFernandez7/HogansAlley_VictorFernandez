@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Scr_GuyActions : MonoBehaviour
 {
-    Animator animator;
-    Animator animatorBang;
+    [SerializeField] Animator animator;
+    [SerializeField] Animator animatorBang;
 
     public int minTime = 1;
     public int maxTime = 4;
@@ -22,10 +22,10 @@ public class Scr_GuyActions : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        animatorBang = GetComponentInChildren<Animator>();
+        //animator = GetComponent<Animator>();
+        //animatorBang = GetComponentInChildren<Animator>();
 
-        timeToBye = Random.Range(3, timeToBye);
+        timeToBye = Random.Range(5, timeToBye);
 
         if (animator == null)
             Debug.Log("Animator missing");

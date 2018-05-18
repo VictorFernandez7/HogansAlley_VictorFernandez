@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50bf570c465cb14cbf66e7075e08910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95338998993963434}
+  animatorBang: {fileID: 95788685588826028}
   minTime: 3
   maxTime: 5
   pointsDie: 100
