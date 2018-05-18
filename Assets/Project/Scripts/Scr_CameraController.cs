@@ -14,9 +14,10 @@ public class Scr_CameraController : MonoBehaviour
     float fireRate;
     bool canShoot = true;
 
+    Animator anim;
     public float distance;
-    bool key;
-    bool keyStop;
+    bool buttonLocked;
+    bool butttonStop;
 
     private void Awake()
     {
@@ -32,22 +33,30 @@ public class Scr_CameraController : MonoBehaviour
         {
             if (hit.collider.tag == "Menu")
             {
-                key = true;
+                buttonLocked = true;
+                anim = hit.transform.gameObject.GetComponent<Animator>();
+                anim.SetBool("Target", true);
 
-                hit.transform.gameObject.GetComponent<Animator>().SetBool("Target", true);
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if (hit.transform.gameObject.name == "New Game Cube")
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    if (hit.transform.gameObject.name == "Exit Cube")
+                        Application.Quit();
+                }
             }
 
-            else if (keyStop == false)
+            else if (butttonStop == false)
             {
-                key = false;
+                buttonLocked = false;
             }                
         }
 
-        else if ((key == true) && (keyStop == false))
+        else if ((buttonLocked == true) && (butttonStop == false))
         {
-            hit.transform.gameObject.GetComponent<Animator>().SetBool("Target", false);
+            anim.SetBool("Target", false);
 
-            key = false;
+            buttonLocked = false;
         }
 
         if (!UnityEngine.XR.XRSettings.enabled)
