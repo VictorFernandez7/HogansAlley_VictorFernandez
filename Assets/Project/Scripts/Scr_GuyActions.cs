@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class Scr_GuyActions : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-    [SerializeField] Animator animatorBang;
+    [SerializeField] Animator animator;          // Animator personaje
+    [SerializeField] Animator animatorBang;      // Animator bang de cada personaje (hijo)
+    [SerializeField] int minTime = 1;            // Tiempo mínimo disparo enemigo
+    [SerializeField] int maxTime = 4;            // Tiempo máximo disparo enemigo
+    [SerializeField] int pointsDie = 0;          // Puntos por muerte del personaje (Negativo si resta)
+    [SerializeField] int bangPoints;             // Puntos que quita al jugador al dispararlo
+    [SerializeField] bool isEnemy;               // Si se trata de un enemigo o un personaje inofensivo
+    [SerializeField] float maxTimeToBye = 5f;    // Tiempo máximo que tarda en morir
 
-    public int minTime = 1;
-    public int maxTime = 4;
-
-    public int pointsDie = 0;
-
-    private float timeToShoot;
-    public float timeToBye = 5f;
-
-    public bool isEnemy;
-    private bool isHit;
-
-    bool pointsGiven;
+    float timeToShoot;      // Tiempo que tarda el personaje en disparar en caso de ser enemigo
+    bool isHit;             // True si el enemigo ha recibido daño
+    bool playerDamaged;     // True si el jugador ha recibido daño
+    bool pointsGiven;       // True si el enemigo ha disparado al jugador y le ha quitado puntos
 
     void Start()
     {
-        //animator = GetComponent<Animator>();
-        //animatorBang = GetComponentInChildren<Animator>();
-
-        timeToBye = Random.Range(5, timeToBye);
+        maxTimeToBye = Random.Range(5, maxTimeToBye);
 
         if (animator == null)
             Debug.Log("Animator missing");
         if (animatorBang == null)
             Debug.Log("AnimatorBang missing");
+
         StartCoroutine(KillThisGuy());
 
         if (isEnemy)
@@ -45,13 +41,14 @@ public class Scr_GuyActions : MonoBehaviour
         if (!isHit)
         {
             animatorBang.SetBool("Bang", true);
-            Debug.Log("BANG");
+            playerDamaged = true;
+            Scr_GameplayManager.GetInstance().points -= bangPoints;
         }            
     }
 
     IEnumerator KillThisGuy()
     {
-        yield return new WaitForSeconds(timeToBye);
+        yield return new WaitForSeconds(maxTimeToBye);
         animator.SetTrigger("EndNow");
     }
 
@@ -60,9 +57,12 @@ public class Scr_GuyActions : MonoBehaviour
         if (other.gameObject.tag == "Bullet" && !isHit && !pointsGiven)
         {
             isHit = true;
-            Scr_GameplayManager.GetInstance().points += pointsDie;
-            animator.SetTrigger("EndNow");
             pointsGiven = true;
+
+            if (!playerDamaged)
+                Scr_GameplayManager.GetInstance().points += pointsDie;
+
+            animator.SetTrigger("EndNow");
         }
     }
 }

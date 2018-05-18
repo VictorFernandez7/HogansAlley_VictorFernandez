@@ -4,7 +4,7 @@
 
 OBLIGATORIO:
 
-- Obtener puntos al golpear dos veces a enemigos Añadido ratio de disparo y 
+- Obtener puntos al golpear dos veces a enemigos (Añadido ratio de disparo y 
 	Scr_GuyActions [55 - 63]).
 
 - Dos enemigos en mismo spawn (Scr_PeopleSpawner [20 - 32]).
@@ -17,4 +17,4 @@ OPCIONAL:
 
 - Disparo enemigos (Scr_GuyActions [36 - 49]).
 
-- Puntuación por headshot.
+-

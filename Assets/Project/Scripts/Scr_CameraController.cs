@@ -57,6 +57,5 @@ public class Scr_CameraController : MonoBehaviour
             bh.Shoot(transform.forward);
         else
             Debug.Log("La bullet no tiene adjunto el script bulletHandler");
-        //Destroy(bulletInstance, 3f);
     }
 }
